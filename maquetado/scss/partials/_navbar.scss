@@ -2,14 +2,13 @@
 @import 'colors';
 
 .header {
-  display: flex;
   padding: 5px;
 
   .navbar {
     align-items: center;
     border-bottom: 4px solid $color-gray;
     display: flex;
-    height: 90px;
+    height: $nav-height;
     justify-content: space-between;
     width: 100%;
 
@@ -18,7 +17,7 @@
       padding: 0 20px;
     }
     .navbar-logo {
-      width: 200px;
+      height: $nav-logo-height;
     }  
   }
 }
