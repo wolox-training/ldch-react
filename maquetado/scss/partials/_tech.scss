@@ -1,0 +1,52 @@
+@import 'colors';
+@import 'fixed-sizes';
+
+$single-margin: 10px;
+$border-radius: 2%;
+
+.tech-wrapper {
+  padding: 10px;
+
+  .tech-box {
+    align-items: center;
+    background-color: $color-green;
+    border-radius: $border-radius;
+    display: flex;
+    flex-flow: column;
+    font-size: $text-medium;
+    padding: 30px;
+    position: relative;
+    width: 200px;
+  }
+
+  .tech-desc {
+    text-align: center;
+
+    &::after {
+      border: 1px solid $color-green;
+      border-radius: $border-radius;
+      content: '';
+      height: 100%;
+      left: -10px;
+      top: -10px;
+      position: absolute;
+      width: 100%;
+      z-index: -1;
+    }
+  }
+  
+  .tech-img {
+    height: $tech-logo-size;
+    margin: 0 0 $single-margin 0;
+    width: $tech-logo-size;
+  }
+
+  .tech-title {
+    margin: 0 0 $single-margin 0;
+  }
+
+  .tech-release {
+    font-weight: bold;
+    margin: 0 0 $single-margin * 2 0;
+  }
+}
