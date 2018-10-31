@@ -1,0 +1,25 @@
+@import 'fixed-sizes';
+@import 'colors';
+
+.header {
+  display: flex;
+  flex: 0 0 auto;
+  padding: 5px;
+
+  .navbar {
+    align-items: center;
+    border-bottom: 4px solid $color-gray;
+    display: flex;
+    height: 90px;
+    justify-content: space-between;
+    width: 100%;
+
+    .navbar-item, .navbar-logo {
+      font-size: $text-big;
+      padding: 0 20px;
+    }
+    .navbar-logo {
+      width: 200px;
+    }  
+  }
+}
