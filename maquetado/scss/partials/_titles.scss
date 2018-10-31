@@ -1,0 +1,19 @@
+@import '_fixed-sizes';
+
+.title {
+  align-items: center;
+  display: flex;
+  font-size: $text-big;
+  padding: 40px 60px;
+  position: relative;
+
+  &::before {
+    background: url(assets/triangle.svg) no-repeat;
+    content: '';
+    height: $title-decoration-height;
+    left: 10px;
+    position: absolute;
+    width: $title-decoration-width;
+    z-index: -1;
+  }
+}
