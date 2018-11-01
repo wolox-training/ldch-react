@@ -1,0 +1,28 @@
+@import 'colors';
+@import 'fixed-sizes';
+
+.footer {
+  align-items: center;
+  background-color: $color-blue;
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 20px 10px 10px;
+
+  .footer-copyright {
+    font-size: $text-small;
+    align-self: flex-end;
+  } 
+  
+  .footer-logo {
+    height: $footer-logo-height;
+    margin: 10px;
+  }
+  
+  .footer-title {
+    font-size: $text-medium;
+  }
+
+  .footer-title, .footer-copyright {
+    color: white;
+  }
+}
