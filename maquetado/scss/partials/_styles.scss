@@ -12,13 +12,13 @@
 
 .main-wrapper {
   display: flex;
-  flex-flow: column nowrap;
   height: 100vh;
+  flex-flow: column nowrap;
 }
 
 .tech-wrapper {
   display: grid;
-  grid-template-columns:  4fr 2fr 2fr;
-  grid-column-gap: 20px;
+  grid-template-columns: 3fr 1fr 2fr;
   margin: 40px 40px 80px 40px;
+  position: relative;
 }
