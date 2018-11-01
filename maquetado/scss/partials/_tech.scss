@@ -15,22 +15,26 @@ $border-radius: 2%;
   padding: 30px;
   position: relative;
   width: 200px;
-}
-
-.tech-desc {
-  text-align: center;
-
+  
   &::after {
     border: 1px solid $color-green;
     border-radius: $border-radius;
     content: '';
     height: 100%;
-    left: -10px;
-    top: -10px;
+    transform: translate(-10px, -40px);
+    transition: transform 0.5s ease;
     position: absolute;
     width: 100%;
     z-index: -1;
   }
+
+  &:hover::after {
+    transform: translate(10px, -20px);
+  }
+}
+
+.tech-desc {
+  text-align: center;
 }
 
 .tech-img {
