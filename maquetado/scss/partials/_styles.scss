@@ -13,10 +13,7 @@
 }
 
 .tech-wrapper {
-  padding: 10px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  margin: 0 auto 60px auto;
-  width: 90%;
+  display: grid;
+  grid-template-columns:  4fr 2fr 2fr;
+  grid-column-gap: 20px;
 }

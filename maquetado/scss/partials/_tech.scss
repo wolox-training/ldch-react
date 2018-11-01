@@ -6,31 +6,28 @@ $border-radius: 2%;
 
 .tech-box {
   align-items: center;
-  background-color: $color-green;
-  border-radius: $border-radius;
   display: flex;
   flex-flow: column;
   font-size: $text-medium;
-  margin: 20px;
   padding: 30px;
   position: relative;
-  width: 200px;
-  
-  &::after {
-    border: 1px solid $color-green;
-    border-radius: $border-radius;
-    content: '';
-    height: 100%;
-    transform: translate(-10px, -40px);
-    transition: transform 0.5s ease;
-    position: absolute;
-    width: 100%;
-    z-index: -1;
-  }
+  width: 250px;
+}
 
-  &:hover::after {
-    transform: translate(10px, -20px);
+.feature-tech{
+  display: grid;
+  border-right: 3px solid $color-green;
+
+  .tech-box {
+    align-self: center;
+    justify-self: end;
   }
+} 
+
+.techs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
 }
 
 .tech-desc {
