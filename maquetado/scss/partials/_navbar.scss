@@ -18,5 +18,19 @@
     .navbar-logo {
       height: $nav-logo-height;
     }  
+
+    @media screen and (max-width: $breakpoint){
+      
+      height: $nav-height * 2;
+      padding: 80px;
+
+      .navbar-logo {
+        height: $nav-logo-height * 2;
+      }
+
+      .navbar-item {
+        display: none;
+      }
+    }
   }
 }
