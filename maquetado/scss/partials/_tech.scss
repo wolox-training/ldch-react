@@ -46,3 +46,29 @@ $border-radius: 2%;
   font-weight: bold;
   margin: 0 0 $single-margin * 2 0;
 }
+
+@media screen and (max-width: $breakpoint) {
+
+  .tech-box {
+    position: relative;
+    width: 80%;
+  }
+  
+  .tech-box-feature {
+    justify-self: center;
+    grid-row: auto;
+    &::after {
+      width: 0;
+    }
+  } 
+  
+  .tech-img {
+    height: $tech-logo-size * 3;
+    width: $tech-logo-size * 3;
+  }
+
+  .tech-title, .tech-release, .tech-desc {
+    font-size: $text-big * 2;
+  }
+}
+ 
