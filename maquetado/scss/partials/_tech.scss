@@ -52,6 +52,15 @@ $border-radius: 2%;
   .tech-box {
     position: relative;
     width: 80%;
+
+    &::after {
+      background-color: $color-green;
+      content: '';
+      height: 6px;
+      transform: translate(0,-200px);
+      position: absolute;
+      width: 100%;
+    }
   }
   
   .tech-box-feature {

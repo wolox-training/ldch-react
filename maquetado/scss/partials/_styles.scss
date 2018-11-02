@@ -25,6 +25,7 @@
 
   @media screen and (max-width: $breakpoint) {
     grid-template-columns: 1fr;
+    grid-gap: 200px;
     justify-items: center;
     margin: 120px 40px 240px;
   }
