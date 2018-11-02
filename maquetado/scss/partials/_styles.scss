@@ -18,15 +18,17 @@
 }
 
 .tech-wrapper {
+  align-items: center;
   display: grid;
-  grid-template-columns: 2fr 1fr 2fr;
-  margin: 40px 40px 80px 40px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  margin: 0 auto;
+  max-width: 750px;
   position: relative;
 
   @media screen and (max-width: $breakpoint) {
+    grid-gap: 50px;
     grid-template-columns: 1fr;
-    grid-gap: 200px;
     justify-items: center;
-    margin: 120px 40px 240px;
   }
 }

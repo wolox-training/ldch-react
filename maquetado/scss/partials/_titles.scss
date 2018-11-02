@@ -18,14 +18,7 @@
   }
 
   @media screen and (max-width: $breakpoint) {
-    font-size: $text-big * 3;
-    margin: 120px auto;
+    margin: 50px auto 20px;
     width: fit-content;
-
-    &::before {
-      height: $title-decoration-height * 3;
-      width: $title-decoration-width * 3;
-      left: -95px;
-    }
   }
 }
