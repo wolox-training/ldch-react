@@ -16,4 +16,9 @@
     width: $title-decoration-width;
     z-index: -1;
   }
+
+  @media screen and (max-width: $breakpoint) {
+    margin: 50px auto 20px;
+    width: fit-content;
+  }
 }

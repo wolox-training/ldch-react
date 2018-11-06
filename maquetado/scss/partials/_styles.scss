@@ -1,22 +1,34 @@
 @import 'fonts';
+@import 'fixed-sizes';
 
 .container {
   font-family: $roboto-stack;
+  padding: 50px;
+}
+
+.content-wrapper {
   height: 100%;
   overflow-y: auto;
 }
 
 .main-wrapper {
   display: flex;
-  flex-flow: column nowrap;
   height: 100vh;
+  flex-flow: column nowrap;
 }
 
 .tech-wrapper {
-  padding: 10px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  margin: 0 auto 60px auto;
-  width: 90%;
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  margin: 0 auto;
+  max-width: 750px;
+  position: relative;
+
+  @media screen and (max-width: $breakpoint) {
+    grid-gap: 50px;
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
 }

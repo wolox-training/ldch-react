@@ -2,11 +2,10 @@
 @import 'colors';
 
 .header {
-  padding: 5px;
 
   .navbar {
     align-items: center;
-    border-bottom: 4px solid $color-gray;
+    box-shadow: 0px 8px 8px 0px $color-gray;
     display: flex;
     height: $nav-height;
     justify-content: space-between;
@@ -19,5 +18,12 @@
     .navbar-logo {
       height: $nav-logo-height;
     }  
+
+    @media screen and (max-width: $breakpoint){
+
+      .navbar-item {
+        display: none;
+      }
+    }
   }
 }
