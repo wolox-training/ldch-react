@@ -27,3 +27,7 @@ export function reverseMerge(a, b) {
   const reversed = [...b, ...a];
   return reversed;
 }
+
+export function filterAttribs({ a, b, ...rest }) {
+  return rest;
+}
