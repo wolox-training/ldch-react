@@ -14,5 +14,11 @@ export function min(...param) {
 }
 
 export function copy(obj) {
-  return { ...obj };
+  let result;
+  if (isArray(obj)) {
+    result = [...obj];
+  } else {
+    result = { ...obj };
+  }
+  return result;
 }
