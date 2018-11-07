@@ -22,3 +22,8 @@ export function copy(obj) {
   }
   return result;
 }
+
+export function reverseMerge(a, b) {
+  const reversed = [...b, ...a];
+  return reversed;
+}
