@@ -13,6 +13,6 @@ export function min(...param) {
   return number;
 }
 
-export function copy() {
-
+export function copy(obj) {
+  return { ...obj };
 }
