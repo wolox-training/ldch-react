@@ -5,26 +5,26 @@ import Square from '../Square';
 import style from './styles.scss';
 
 class Board extends Component {
-  renderSquare = i => <Square value={i} />;
+  renderSquare = () => <Square />;
   render() {
     const status = 'Next player: X';
     return (
       <React.Fragment>
         <div className={style.status}>{status}</div>
         <div className={style.boardRow}>
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
+          {this.renderSquare()}
+          {this.renderSquare()}
+          {this.renderSquare()}
         </div>
         <div className={style.boardRow}>
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
+          {this.renderSquare()}
+          {this.renderSquare()}
+          {this.renderSquare()}
         </div>
         <div className={style.boardRow}>
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
+          {this.renderSquare()}
+          {this.renderSquare()}
+          {this.renderSquare()}
         </div>
       </React.Fragment>
     );
