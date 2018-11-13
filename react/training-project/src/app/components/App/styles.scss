@@ -1,3 +1,5 @@
+ @import '../../../scss/colors';
+
 .app {
   text-align: center;
 }
@@ -8,14 +10,14 @@
 }
 
 .app-header {
-  background-color: #222;
+  background-color: $color-black;
+  color: $color-white;
   height: 150px;
   padding: 20px;
-  color: white;
 }
 
 .app-title {
-  font-size: 1.5em;
+  font-size: 20px;
 }
 
 .app-intro {
