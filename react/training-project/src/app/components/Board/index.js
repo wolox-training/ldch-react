@@ -13,26 +13,21 @@ class Board extends Component {
     statesquares[i] = 'X';
     this.setState({ squares: statesquares });
   };
-  renderSquare = i => <Square value={this.state.squares[i]} onClick={() => this.handleCick(i)} />;
+  renderSquare = i => <Square value={this.state.squares[i]} key={i} onClick={() => this.handleCick(i)} />;
   render() {
     const status = 'Next player: X';
+    const NUMBER_OF_COLUMNS = 3;
     return (
       <React.Fragment>
-        <div className={style.status}>{status}</div>
+        <h1 className={style.status}>{status}</h1>
         <div className={style.boardRow}>
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-          {this.renderSquare(3)}
+          {Array.from(Array(NUMBER_OF_COLUMNS).keys()).map(i => this.renderSquare(i))}
         </div>
         <div className={style.boardRow}>
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-          {this.renderSquare(6)}
+          {Array.from(Array(NUMBER_OF_COLUMNS).keys()).map(i => this.renderSquare(i + 3))}
         </div>
         <div className={style.boardRow}>
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-          {this.renderSquare(9)}
+          {Array.from(Array(NUMBER_OF_COLUMNS).keys()).map(i => this.renderSquare(i + 6))}
         </div>
       </React.Fragment>
     );
