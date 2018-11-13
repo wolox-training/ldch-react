@@ -5,10 +5,7 @@ import Square from '../Square';
 import style from './styles.scss';
 
 class Board extends Component {
-  // eslint-disable-next-line
-  renderSquare = (i) => { 
-    return <Square />;
-  };
+  renderSquare = () => <Square />;
   render() {
     const status = 'Next player: X';
     return (
