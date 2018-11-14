@@ -1,10 +1,18 @@
 .game {
-  display: flex;
-  margin: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  margin: 20px auto;
+  max-width: 600px;
+
+  @media screen and (max-width: 1024px) {
+    grid-gap: 30px; 
+    grid-template-columns: 1fr;
+  }
 }
 
-.gameInfo {
-  margin-left: 20px;
+.gameBoard {
+  min-width: 300px;
 }
 
 .status {
