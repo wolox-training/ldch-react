@@ -7,6 +7,7 @@ import style from './styles.scss';
 class Game extends Component {
   state = {
     history: [{ squares: Array(9).fill(null) }],
+    stepNumber: 0,
     xIsNext: true
   };
   calculateWinner = squares => {
@@ -20,7 +21,7 @@ class Game extends Component {
     return null;
   };
   handleCick = i => {
-    const history = this.state.history.slice();
+    const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const statesquares = current.squares.slice();
     if (this.calculateWinner(statesquares) || statesquares[i]) return;
@@ -31,13 +32,29 @@ class Game extends Component {
           squares: statesquares
         }
       ]),
+      stepNumber: history.length,
       xIsNext: !this.state.xIsNext
+    });
+  };
+  jumpTo = step => {
+    this.setState({
+      stepNumber: step,
+      xIsNext: step % 2 === 0
     });
   };
   render() {
     const history = this.state.history.slice();
-    const current = history[history.length - 1];
+    const current = history[this.state.stepNumber];
     const winner = this.calculateWinner(current.squares);
+
+    const moves = history.map((step, move) => {
+      const desc = move ? `Go to move #${move}` : `Go to game start`;
+      return (
+        <li key={move.toString()}>
+          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+        </li>
+      );
+    });
     return (
       <div className={style.game}>
         <div className={style.gameBoard}>
@@ -47,7 +64,7 @@ class Game extends Component {
           <h3 className={style.status}>
             {winner ? `Winner: ${winner}` : `Next Player ${this.state.xIsNext ? 'X' : 'O'}`}
           </h3>
-          <ol>{/* TODO */}</ol>
+          <ol>{moves}</ol>
         </div>
       </div>
     );
