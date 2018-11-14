@@ -3,31 +3,21 @@ import PropTypes from 'prop-types';
 
 import Square from '../Square';
 
-import style from './styles.scss';
-
 class Board extends Component {
   renderSquare = i => <Square value={this.props.squares[i]} key={i} onClick={() => this.props.onClick(i)} />;
   render() {
-    const NUMBER_OF_COLUMNS = 3;
+    const NUMBER_OF_SQUARES = 9;
     return (
       <React.Fragment>
-        <div className={style.boardRow}>
-          {Array.from(Array(NUMBER_OF_COLUMNS).keys()).map(i => this.renderSquare(i))}
-        </div>
-        <div className={style.boardRow}>
-          {Array.from(Array(NUMBER_OF_COLUMNS).keys()).map(i => this.renderSquare(i + 3))}
-        </div>
-        <div className={style.boardRow}>
-          {Array.from(Array(NUMBER_OF_COLUMNS).keys()).map(i => this.renderSquare(i + 6))}
-        </div>
+        {Array.from(Array(NUMBER_OF_SQUARES).keys()).map(i => this.renderSquare(i))}
       </React.Fragment>
     );
   }
 }
 
 Board.propTypes = {
-  squares: PropTypes.arrayOf(PropTypes.string),
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  squares: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default Board;
