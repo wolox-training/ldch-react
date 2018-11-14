@@ -6,16 +6,20 @@ import style from './styles.scss';
 
 class Board extends Component {
   state = {
-    squares: Array(9).fill(null)
+    squares: Array(9).fill(null),
+    xIsNext: true
   };
   handleCick = i => {
     const statesquares = this.state.squares.slice();
-    statesquares[i] = 'X';
-    this.setState({ squares: statesquares });
+    statesquares[i] = this.state.xIsNext ? 'X' : 'O';
+    this.setState({
+      squares: statesquares,
+      xIsNext: !this.state.xIsNext
+    });
   };
   renderSquare = i => <Square value={this.state.squares[i]} key={i} onClick={() => this.handleCick(i)} />;
   render() {
-    const status = 'Next player: X';
+    const status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
     const NUMBER_OF_COLUMNS = 3;
     return (
       <React.Fragment>
