@@ -20,16 +20,16 @@ class Game extends Component {
     }
     return null;
   };
-  handleCick = i => {
+  handleClick = i => {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
-    const statesquares = current.squares.slice();
-    if (this.calculateWinner(statesquares) || statesquares[i]) return;
-    statesquares[i] = this.state.xIsNext ? 'X' : 'O';
+    const squares = current.squares.slice();
+    if (this.calculateWinner(squares) || squares[i]) return;
+    squares[i] = this.state.xIsNext ? 'X' : 'O';
     this.setState({
       history: history.concat([
         {
-          squares: statesquares
+          squares
         }
       ]),
       stepNumber: history.length,
@@ -58,7 +58,7 @@ class Game extends Component {
     return (
       <div className={style.game}>
         <div className={style.gameBoard}>
-          <Board squares={current.squares} onClick={i => this.handleCick(i)} />
+          <Board squares={current.squares} handleClick={this.handleClick} />
         </div>
         <div className={style.gameInfo}>
           <h3 className={style.status}>

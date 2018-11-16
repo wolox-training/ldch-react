@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import Square from '../Square';
 
 class Board extends Component {
-  renderSquare = i => <Square value={this.props.squares[i]} key={i} onClick={() => this.props.onClick(i)} />;
+  renderSquare = i => (
+    <Square value={this.props.squares[i]} key={i} id={i} handleClick={this.props.handleClick} />
+  );
   render() {
     const NUMBER_OF_SQUARES = 9;
     return (
@@ -16,7 +18,7 @@ class Board extends Component {
 }
 
 Board.propTypes = {
-  onClick: PropTypes.func,
+  handleClick: PropTypes.func,
   squares: PropTypes.arrayOf(PropTypes.string)
 };
 

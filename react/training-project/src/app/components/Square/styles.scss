@@ -1,14 +1,14 @@
 @import '../../../scss/colors';
 
 .square {
-  background: $color-white;
-  border: 1px solid $color-border;
+  background: $white;
+  border: 1px solid $border;
   border-radius: 20px;
   float: left;
   font-size: 50px;
   font-weight: bold;
-  line-height: 34px;
   height: 100px;
+  line-height: 34px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;

@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import style from './styles.scss';
 
-const Square = props => (
-  <button className={style.square} onClick={props.onClick}>
-    {props.value}
-  </button>
-);
+class Square extends Component {
+  handleClick = () => this.props.handleClick(this.props.id);
+
+  render() {
+    return (
+      <button className={style.square} onClick={this.handleClick}>
+        {this.props.value}
+      </button>
+    );
+  }
+}
 
 Square.propTypes = {
-  onClick: PropTypes.func,
+  id: PropTypes.number,
+  handleClick: PropTypes.func,
   value: PropTypes.string
 };
 
