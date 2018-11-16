@@ -8,12 +8,14 @@ class Board extends Component {
   state = {
     squares: Array(9).fill(null)
   };
-  handleCick = i => {
-    const statesquares = this.state.squares.slice();
-    statesquares[i] = 'X';
-    this.setState({ squares: statesquares });
+  handleClick = i => {
+    const squares = this.state.squares.slice();
+    squares[i] = 'X';
+    this.setState({ squares });
   };
-  renderSquare = i => <Square value={this.state.squares[i]} key={i} onClick={() => this.handleCick(i)} />;
+
+  renderSquare = i => <Square value={this.state.squares[i]} key={i} id={i} handleClick={this.handleClick} />;
+
   render() {
     const status = 'Next player: X';
     const NUMBER_OF_COLUMNS = 3;
