@@ -7,6 +7,7 @@ class Board extends Component {
   renderSquare = i => (
     <Square value={this.props.squares[i]} key={i} id={i} handleClick={this.props.handleClick} />
   );
+
   render() {
     const NUMBER_OF_SQUARES = 9;
     return (

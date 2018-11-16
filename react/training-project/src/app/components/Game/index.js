@@ -10,6 +10,7 @@ class Game extends Component {
     stepNumber: 0,
     xIsNext: true
   };
+
   calculateWinner = squares => {
     const lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
     for (let i = 0; i < lines.length; i += 1) {
@@ -20,6 +21,7 @@ class Game extends Component {
     }
     return null;
   };
+
   handleClick = i => {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
@@ -27,21 +29,19 @@ class Game extends Component {
     if (this.calculateWinner(squares) || squares[i]) return;
     squares[i] = this.state.xIsNext ? 'X' : 'O';
     this.setState({
-      history: history.concat([
-        {
-          squares
-        }
-      ]),
+      history: history.concat([{ squares }]),
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext
     });
   };
+
   jumpTo = step => {
     this.setState({
       stepNumber: step,
       xIsNext: step % 2 === 0
     });
   };
+
   render() {
     const history = this.state.history.slice();
     const current = history[this.state.stepNumber];
@@ -55,6 +55,7 @@ class Game extends Component {
         </li>
       );
     });
+
     return (
       <div className={style.game}>
         <div className={style.gameBoard}>
