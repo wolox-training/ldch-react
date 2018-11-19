@@ -4,8 +4,13 @@ import PropTypes from 'prop-types';
 import Square from '../Square';
 
 class Board extends Component {
-  renderSquare = i => (
-    <Square value={this.props.squares[i]} key={i} id={i} handleClick={this.props.handleClick} />
+  renderSquare = squareid => (
+    <Square
+      value={this.props.squares[squareid]}
+      key={squareid}
+      id={squareid}
+      handleClick={this.props.handleClick}
+    />
   );
 
   render() {

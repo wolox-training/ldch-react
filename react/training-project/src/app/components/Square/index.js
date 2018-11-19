@@ -16,8 +16,8 @@ class Square extends Component {
 }
 
 Square.propTypes = {
-  id: PropTypes.number,
-  handleClick: PropTypes.func,
+  handleClick: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
   value: PropTypes.string
 };
 
