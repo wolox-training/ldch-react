@@ -15,11 +15,10 @@ class Board extends Component {
 
   render() {
     const NUMBER_OF_SQUARES = 9;
-    return (
-      <React.Fragment>
-        {Array.from(Array(NUMBER_OF_SQUARES).keys()).map(i => this.renderSquare(i))}
-      </React.Fragment>
+    const SQUARES_TO_RENDER = Array.from(Array(NUMBER_OF_SQUARES).keys()).map(index =>
+      this.renderSquare(index)
     );
+    return <React.Fragment>{SQUARES_TO_RENDER}</React.Fragment>;
   }
 }
 

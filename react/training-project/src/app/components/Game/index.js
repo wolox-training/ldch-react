@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Board from '../Board';
+import Button from '../Button';
 
 import style from './styles.scss';
 
@@ -11,10 +12,11 @@ class Game extends Component {
     xIsNext: true
   };
 
+  LINES_TO_CHECK = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+
   calculateWinner = squares => {
-    const lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
-    for (let i = 0; i < lines.length; i += 1) {
-      const [a, b, c] = lines[i];
+    for (let i = 0; i < this.LINES_TO_CHECK.length; i += 1) {
+      const [a, b, c] = this.LINES_TO_CHECK[i];
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
         return squares[a];
       }
@@ -22,12 +24,12 @@ class Game extends Component {
     return null;
   };
 
-  handleClick = i => {
+  handleClick = squareid => {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
-    if (this.calculateWinner(squares) || squares[i]) return;
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    if (this.calculateWinner(squares) || squares[squareid]) return;
+    squares[squareid] = this.state.xIsNext ? 'X' : 'O';
     this.setState({
       history: history.concat([{ squares }]),
       stepNumber: history.length,
@@ -51,7 +53,9 @@ class Game extends Component {
       const desc = move ? `Go to move #${move}` : `Go to game start`;
       return (
         <li key={move.toString()}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <Button handleClick={this.jumpTo} move={move}>
+            {desc}
+          </Button>
         </li>
       );
     });
