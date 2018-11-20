@@ -1,47 +1,31 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Square from '../Square';
 
-import style from './styles.scss';
-
 class Board extends Component {
-  state = {
-    squares: Array(9).fill(null)
-  };
-
-  handleClick = squareid => {
-    const squares = this.state.squares.slice();
-    squares[squareid] = 'X';
-    this.setState({ squares });
-  };
+  NUMBER_OF_SQUARES = 9;
 
   renderSquare = squareid => (
     <Square
-      value={this.state.squares[squareid]}
+      value={this.props.squares[squareid]}
       key={squareid}
       id={squareid}
-      handleClick={this.handleClick}
+      handleClick={this.props.handleClick}
     />
   );
 
   render() {
-    const status = 'Next player: X';
-    const NUMBER_OF_COLUMNS = 3;
-    return (
-      <React.Fragment>
-        <h1 className={style.status}>{status}</h1>
-        <div className={style.boardRow}>
-          {Array.from(Array(NUMBER_OF_COLUMNS).keys()).map(i => this.renderSquare(i))}
-        </div>
-        <div className={style.boardRow}>
-          {Array.from(Array(NUMBER_OF_COLUMNS).keys()).map(i => this.renderSquare(i + 3))}
-        </div>
-        <div className={style.boardRow}>
-          {Array.from(Array(NUMBER_OF_COLUMNS).keys()).map(i => this.renderSquare(i + 6))}
-        </div>
-      </React.Fragment>
+    const SQUARES_TO_RENDER = Array.from(Array(this.NUMBER_OF_SQUARES).keys()).map(index =>
+      this.renderSquare(index)
     );
+    return <React.Fragment>{SQUARES_TO_RENDER}</React.Fragment>;
   }
 }
+
+Board.propTypes = {
+  handleClick: PropTypes.func,
+  squares: PropTypes.arrayOf(PropTypes.string)
+};
 
 export default Board;
