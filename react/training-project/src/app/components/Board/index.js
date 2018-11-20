@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import Square from '../Square';
 
 class Board extends Component {
+  NUMBER_OF_SQUARES = 9;
+
   renderSquare = squareid => (
     <Square
       value={this.props.squares[squareid]}
@@ -14,8 +16,7 @@ class Board extends Component {
   );
 
   render() {
-    const NUMBER_OF_SQUARES = 9;
-    const SQUARES_TO_RENDER = Array.from(Array(NUMBER_OF_SQUARES).keys()).map(index =>
+    const SQUARES_TO_RENDER = Array.from(Array(this.NUMBER_OF_SQUARES).keys()).map(index =>
       this.renderSquare(index)
     );
     return <React.Fragment>{SQUARES_TO_RENDER}</React.Fragment>;
