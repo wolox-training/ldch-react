@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import Board from '../Board';
-import Button from '../Button';
+import Button from '~components/Button';
 
+import Board from './components/Board';
 import style from './styles.scss';
 
 class Game extends Component {

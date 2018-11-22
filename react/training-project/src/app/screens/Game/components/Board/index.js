@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Square from '../Square';
+import Square from './components/Square';
 
 class Board extends Component {
   NUMBER_OF_SQUARES = 9;
