@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Button from '~components/Button';
+
+import actionCreators from '~redux/History/actions';
 
 import Board from './components/Board';
 import style from './styles.scss';
 
 class Game extends Component {
-  state = {
-    history: [{ squares: Array(9).fill(null) }],
-    stepNumber: 0,
-    xIsNext: true
-  };
-
   LINES_TO_CHECK = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
 
   calculateWinner = squares => {
@@ -26,35 +23,29 @@ class Game extends Component {
   };
 
   handleClick = squareid => {
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);
+    const history = this.props.history.slice(0, this.props.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
     if (this.calculateWinner(squares) || squares[squareid]) return;
-    squares[squareid] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
+    squares[squareid] = this.props.xIsNext ? 'X' : 'O';
+
+    this.props.dispatchClick({
       history: history.concat([{ squares }]),
       stepNumber: history.length,
-      xIsNext: !this.state.xIsNext
-    });
-  };
-
-  jumpTo = step => {
-    this.setState({
-      stepNumber: step,
-      xIsNext: step % 2 === 0
+      xIsNext: !this.props.xIsNext
     });
   };
 
   render() {
-    const history = this.state.history.slice();
-    const current = history[this.state.stepNumber];
+    const history = this.props.history.slice();
+    const current = history[this.props.stepNumber];
     const winner = this.calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {
       const desc = move ? `Go to move #${move}` : `Go to game start`;
       return (
         <li key={move.toString()}>
-          <Button handleClick={this.jumpTo} move={move}>
+          <Button handleClick={this.props.jumpTo} move={move}>
             {desc}
           </Button>
         </li>
@@ -68,7 +59,7 @@ class Game extends Component {
         </div>
         <div className={style.gameInfo}>
           <h3 className={style.status}>
-            {winner ? `Winner: ${winner}` : `Next Player ${this.state.xIsNext ? 'X' : 'O'}`}
+            {winner ? `Winner: ${winner}` : `Next Player ${this.props.xIsNext ? 'X' : 'O'}`}
           </h3>
           <ol>{moves}</ol>
         </div>
@@ -77,4 +68,18 @@ class Game extends Component {
   }
 }
 
-export default Game;
+const mapStateToProps = state => ({
+  history: state.history,
+  stepNumber: state.stepNumber,
+  xIsNext: state.xIsNext
+});
+
+const mapDispatchToProps = dispatch => ({
+  jumpTo: step => dispatch(actionCreators.setJumTo({ stepNumber: step, xIsNext: step % 2 === 0 })),
+  dispatchClick: newstate => dispatch(actionCreators.setSquareClick(newstate))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Game);
