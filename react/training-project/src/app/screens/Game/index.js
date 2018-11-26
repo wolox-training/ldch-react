@@ -52,9 +52,10 @@ Game.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  history: state.history,
-  stepNumber: state.stepNumber,
-  xIsNext: state.xIsNext
+  state,
+  history: state.rootReducer.history,
+  stepNumber: state.rootReducer.stepNumber,
+  xIsNext: state.rootReducer.xIsNext
 });
 
 const mapDispatchToProps = dispatch => ({
