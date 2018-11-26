@@ -8,9 +8,9 @@ export const actions = {
 };
 
 const actionCreators = {
-  setSquareClick: newstate => ({
+  setSquareClick: newState => ({
     type: actions.SET_SQUARE_CLICK,
-    payload: newstate
+    payload: newState
   }),
   handleClick: ({ history, stepNumber, xIsNext, id }) => {
     const newhistory = history.slice(0, stepNumber + 1);

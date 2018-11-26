@@ -1,7 +1,7 @@
 import { actions } from './actions';
 
 const initalState = {
-  history: [{ squares: Array(9).fill(null) }],
+  history: [{ squares: Array(9).fill('') }],
   stepNumber: 0,
   xIsNext: true
 };
