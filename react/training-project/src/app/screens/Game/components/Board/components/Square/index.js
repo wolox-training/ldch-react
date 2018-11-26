@@ -7,7 +7,13 @@ import actionCreators from '~redux/History/actions';
 import style from './styles.scss';
 
 class Square extends Component {
-  handleClick = () => this.props.handleClick({ ...this.props });
+  handleClick = () =>
+    this.props.handleClick({
+      history: this.props.history,
+      id: this.props.id,
+      stepNumber: this.props.stepNumber,
+      xIsNext: this.props.xIsNext
+    });
   render() {
     return (
       <button className={style.square} onClick={this.handleClick}>
@@ -29,7 +35,11 @@ const mapDispatchToProps = dispatch => ({
 
 Square.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  value: PropTypes.string
+  history: PropTypes.arrayOf(PropTypes.object).isRequired,
+  id: PropTypes.number.isRequired,
+  stepNumber: PropTypes.number.isRequired,
+  value: PropTypes.string.isRequired,
+  xIsNext: PropTypes.bool.isRequired
 };
 
 export default connect(

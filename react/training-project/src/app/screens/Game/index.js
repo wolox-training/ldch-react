@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+/* eslint-disable import/order */
 import Button from '~components/Button';
-
 import actionCreators from '~redux/History/actions';
-
 import { calculateWinner } from '~utils/gameUtils';
 
 import Board from './components/Board';
@@ -45,10 +44,10 @@ class Game extends Component {
 }
 
 Game.propTypes = {
-  history: PropTypes.arrayOf(PropTypes.object),
-  stepNumber: PropTypes.number,
-  jumpTo: PropTypes.func,
-  xIsNext: PropTypes.bool
+  history: PropTypes.arrayOf(PropTypes.object).isRequired,
+  stepNumber: PropTypes.number.isRequired,
+  jumpTo: PropTypes.func.isRequired,
+  xIsNext: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -60,7 +59,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   jumpTo: step => dispatch(actionCreators.setJumTo(step)),
-  handleClick: newstate => dispatch(actionCreators.handleClick(newstate))
+  handleClick: newState => dispatch(actionCreators.handleClick(newState))
 });
 
 export default connect(
