@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 /* eslint-disable import/order */
 import Button from '~components/Button';
 import actionCreators from '~redux/History/actions';
 import { calculateWinner } from '~utils/gameUtils';
 
-import Board from './components/Board';
-import style from './styles.scss';
+import GameDumb from './layout';
 
 class Game extends Component {
   render() {
     const history = this.props.history.slice();
     const current = history[this.props.stepNumber];
     const winner = calculateWinner(current.squares);
+    const logged = true;
 
     const moves = history.map((step, move) => {
       const desc = move ? `Go to move #${move}` : `Go to game start`;
@@ -27,18 +28,10 @@ class Game extends Component {
       );
     });
 
-    return (
-      <div className={style.game}>
-        <div className={style.gameBoard}>
-          <Board squares={current.squares} />
-        </div>
-        <div className={style.gameInfo}>
-          <h3 className={style.status}>
-            {winner ? `Winner: ${winner}` : `Next Player ${this.props.xIsNext ? 'X' : 'O'}`}
-          </h3>
-          <ol>{moves}</ol>
-        </div>
-      </div>
+    return logged ? (
+      <GameDumb current={current} winner={winner} xIsNext={this.props.xIsNext} moves={moves} />
+    ) : (
+      <Redirect to="/login" />
     );
   }
 }

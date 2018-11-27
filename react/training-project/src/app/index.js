@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import logo from '../logo.svg';
 
@@ -18,10 +18,11 @@ class App extends Component {
           <h1 className={style.appTitle}>{this.APP_TITLE}</h1>
         </header>
         <Router>
-          <Fragment>
-            <Route path="/" exact component={Game} />
+          <Switch>
             <Route path="/login" component={Login} />
-          </Fragment>
+            <Route path="/" exact component={Game} />
+            <Redirect to="/login" />
+          </Switch>
         </Router>
       </div>
     );
