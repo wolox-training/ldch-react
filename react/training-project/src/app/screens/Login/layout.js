@@ -2,14 +2,26 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 
+import style from './styles.scss';
+
 /* eslint-disable no-func-assign */
 function LoginForm({ handleSubmit }) {
   return (
-    <form onSubmit={handleSubmit}>
-      <Field name="user" component="input" type="text" placeholder="User" />
-      <Field name="password" component="input" type="password" placeholder="Password" />
-      <button type="submit">Submit</button>
-    </form>
+    <div className={style.formContainer}>
+      <form onSubmit={handleSubmit} className={style.loginForm}>
+        <Field name="user" className={style.formInput} component="input" type="text" placeholder="User" />
+        <Field
+          name="password"
+          className={style.formInput}
+          component="input"
+          type="password"
+          placeholder="Password"
+        />
+        <button className={style.loginButton} type="submit">
+          Log in
+        </button>
+      </form>
+    </div>
   );
 }
 
