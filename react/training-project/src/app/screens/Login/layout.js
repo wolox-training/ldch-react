@@ -2,7 +2,10 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 
+/* eslint-disable import/order */
 import Message from '~components/Message';
+import Input from '~components/Input';
+import { required, minLength } from '~utils/validationUtils';
 
 import style from './styles.scss';
 
@@ -14,14 +17,16 @@ function LoginForm({ handleSubmit, loginFail }) {
         <Field
           name="username"
           className={style.formInput}
-          component="input"
+          component={Input}
+          validate={[required]}
           type="email"
-          placeholder="User"
+          placeholder="Username"
         />
         <Field
           name="password"
           className={style.formInput}
-          component="input"
+          validate={[required, minLength]}
+          component={Input}
           type="password"
           placeholder="Password"
         />
