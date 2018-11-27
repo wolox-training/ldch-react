@@ -1,19 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Square from '../Square';
+import Square from './components/Square';
 
 class Board extends Component {
   NUMBER_OF_SQUARES = 9;
 
-  renderSquare = squareid => (
-    <Square
-      value={this.props.squares[squareid]}
-      key={squareid}
-      id={squareid}
-      handleClick={this.props.handleClick}
-    />
-  );
+  renderSquare = squareid => <Square value={this.props.squares[squareid]} key={squareid} id={squareid} />;
 
   render() {
     const SQUARES_TO_RENDER = Array.from(Array(this.NUMBER_OF_SQUARES).keys()).map(index =>
@@ -24,8 +17,7 @@ class Board extends Component {
 }
 
 Board.propTypes = {
-  handleClick: PropTypes.func,
-  squares: PropTypes.arrayOf(PropTypes.string)
+  squares: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 export default Board;
