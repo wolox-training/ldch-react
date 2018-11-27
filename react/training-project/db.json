@@ -1,0 +1,11 @@
+{
+  "sessions": [
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "nosoyleon@gmail.com",
+      "password": "123qwe"
+    }
+  ]
+}

@@ -9,7 +9,13 @@ function LoginForm({ handleSubmit }) {
   return (
     <div className={style.formContainer}>
       <form onSubmit={handleSubmit} className={style.loginForm}>
-        <Field name="user" className={style.formInput} component="input" type="text" placeholder="User" />
+        <Field
+          name="username"
+          className={style.formInput}
+          component="input"
+          type="email"
+          placeholder="User"
+        />
         <Field
           name="password"
           className={style.formInput}

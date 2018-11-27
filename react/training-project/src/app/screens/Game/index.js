@@ -15,7 +15,6 @@ class Game extends Component {
     const history = this.props.history.slice();
     const current = history[this.props.stepNumber];
     const winner = calculateWinner(current.squares);
-    const logged = true;
 
     const moves = history.map((step, move) => {
       const desc = move ? `Go to move #${move}` : `Go to game start`;
@@ -28,7 +27,7 @@ class Game extends Component {
       );
     });
 
-    return logged ? (
+    return this.props.logged ? (
       <GameDumb current={current} winner={winner} xIsNext={this.props.xIsNext} moves={moves} />
     ) : (
       <Redirect to="/login" />
@@ -39,15 +38,17 @@ class Game extends Component {
 Game.propTypes = {
   history: PropTypes.arrayOf(PropTypes.object).isRequired,
   stepNumber: PropTypes.number.isRequired,
+  logged: PropTypes.string,
   jumpTo: PropTypes.func.isRequired,
   xIsNext: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
   state,
-  history: state.rootReducer.history,
-  stepNumber: state.rootReducer.stepNumber,
-  xIsNext: state.rootReducer.xIsNext
+  history: state.history.history,
+  logged: state.auth.token,
+  stepNumber: state.history.stepNumber,
+  xIsNext: state.history.xIsNext
 });
 
 const mapDispatchToProps = dispatch => ({

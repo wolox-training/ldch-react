@@ -24,9 +24,9 @@ class Square extends Component {
 }
 
 const mapStateToProps = state => ({
-  history: state.rootReducer.history,
-  stepNumber: state.rootReducer.stepNumber,
-  xIsNext: state.rootReducer.xIsNext
+  history: state.history.history,
+  stepNumber: state.history.stepNumber,
+  xIsNext: state.history.xIsNext
 });
 
 const mapDispatchToProps = dispatch => ({
