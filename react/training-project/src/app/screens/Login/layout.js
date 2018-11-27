@@ -2,10 +2,12 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 
+import Message from '~components/Message';
+
 import style from './styles.scss';
 
 /* eslint-disable no-func-assign */
-function LoginForm({ handleSubmit }) {
+function LoginForm({ handleSubmit, loginFail }) {
   return (
     <div className={style.formContainer}>
       <form onSubmit={handleSubmit} className={style.loginForm}>
@@ -27,12 +29,14 @@ function LoginForm({ handleSubmit }) {
           Log in
         </button>
       </form>
+      {loginFail && <Message>Username or password invalid!</Message>}
     </div>
   );
 }
 
 LoginForm.propTypes = {
-  handleSubmit: PropTypes.func
+  handleSubmit: PropTypes.func.isRequired,
+  loginFail: PropTypes.bool.isRequired
 };
 
 LoginForm = reduxForm({

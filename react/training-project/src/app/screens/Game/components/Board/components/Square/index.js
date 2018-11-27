@@ -14,6 +14,7 @@ class Square extends Component {
       stepNumber: this.props.stepNumber,
       xIsNext: this.props.xIsNext
     });
+
   render() {
     return (
       <button className={style.square} onClick={this.handleClick}>

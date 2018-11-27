@@ -14,18 +14,24 @@ class LoginPage extends Component {
   };
 
   render() {
-    return !this.props.token ? <LoginForm onSubmit={this.submit} /> : <Redirect to="/" />;
+    return !this.props.token ? (
+      <LoginForm loginFail={this.props.loginFail} onSubmit={this.submit} />
+    ) : (
+      <Redirect to="/" />
+    );
   }
 }
 
 LoginPage.propTypes = {
   logIn: PropTypes.func.isRequired,
+  loginFail: PropTypes.bool.isRequired,
   token: PropTypes.string
 };
 
 const mapStateToProps = state => ({
   state,
-  token: state.auth.token
+  token: state.auth.token,
+  loginFail: state.auth.loginFail
 });
 
 const mapDispatchToProps = dispatch => ({

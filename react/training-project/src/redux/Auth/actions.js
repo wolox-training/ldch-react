@@ -12,9 +12,14 @@ export const actions = {
 const actionCreators = {
   logIn: user => async dispatch => {
     const token = await AuthService.logIn(user);
-    if (!token) return { type: actions.LOG_IN_FAIL };
+    if (!token) return dispatch(actionCreators.logInFail(true));
     dispatch(actionCreators.logInSuccess(token));
   },
+
+  logInFail: bool => ({
+    type: actions.LOG_IN_FAIL,
+    payload: bool
+  }),
 
   logInSuccess: token => ({
     type: actions.LOG_IN_SUCCESS,
