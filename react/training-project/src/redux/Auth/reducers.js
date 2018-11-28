@@ -2,7 +2,8 @@ import { actions } from './actions';
 
 const initalState = {
   token: null,
-  loginFail: false
+  loginFail: false,
+  processing: false
 };
 
 function reducer(state = initalState, action) {
@@ -10,12 +11,19 @@ function reducer(state = initalState, action) {
     case actions.LOG_IN_SUCCESS:
       return {
         ...state,
-        token: action.payload
+        token: action.payload.token,
+        processing: action.payload.processing
       };
     case actions.LOG_IN_FAIL:
       return {
         ...state,
-        loginFail: action.payload
+        loginFail: action.payload.bool,
+        processing: action.payload.processing
+      };
+    case actions.LOG_IN_PROCESSING:
+      return {
+        ...state,
+        processing: action.payload
       };
     default:
       return state;

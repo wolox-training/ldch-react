@@ -15,7 +15,7 @@ class LoginPage extends Component {
 
   render() {
     return !this.props.token ? (
-      <LoginForm loginFail={this.props.loginFail} onSubmit={this.submit} />
+      <LoginForm processing={this.props.processing} loginFail={this.props.loginFail} onSubmit={this.submit} />
     ) : (
       <Redirect to="/" />
     );
@@ -25,13 +25,15 @@ class LoginPage extends Component {
 LoginPage.propTypes = {
   logIn: PropTypes.func.isRequired,
   loginFail: PropTypes.bool.isRequired,
-  token: PropTypes.string
+  token: PropTypes.string,
+  processing: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
   state,
   token: state.auth.token,
-  loginFail: state.auth.loginFail
+  loginFail: state.auth.loginFail,
+  processing: state.auth.processing
 });
 
 const mapDispatchToProps = dispatch => ({
