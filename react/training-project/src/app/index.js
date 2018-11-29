@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 
 import logo from '../logo.svg';
 
-import Game from './screens/Game';
+import AuthorizedRoute from './screens/AuthorizedRoute';
 import Login from './screens/Login';
 import style from './styles.scss';
 
@@ -20,7 +20,7 @@ class App extends Component {
         <Router>
           <Switch>
             <Route path="/login" component={Login} />
-            <Route path="/" exact component={Game} />
+            <Route path="/app" exact component={AuthorizedRoute} />
             <Redirect to="/login" />
           </Switch>
         </Router>

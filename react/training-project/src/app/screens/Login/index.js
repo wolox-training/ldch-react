@@ -21,7 +21,7 @@ class LoginPage extends Component {
         onSubmit={this.handleSubmit}
       />
     ) : (
-      <Redirect to="/" />
+      <Redirect to="/app" />
     );
   }
 }
