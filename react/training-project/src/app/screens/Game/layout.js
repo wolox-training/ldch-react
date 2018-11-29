@@ -21,7 +21,7 @@ function GameDumb({ current, winner, xIsNext, moves }) {
 }
 
 GameDumb.propTypes = {
-  current: PropTypes.objectOf(PropTypes.array),
+  current: PropTypes.objectOf(PropTypes.array).isRequired,
   moves: PropTypes.arrayOf(PropTypes.element).isRequired,
   winner: PropTypes.string,
   xIsNext: PropTypes.bool.isRequired

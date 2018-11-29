@@ -9,13 +9,17 @@ import LoginForm from './layout';
 
 /* eslint-disable no-func-assign */
 class LoginPage extends Component {
-  submit = vals => {
-    this.props.logIn(vals);
+  handleSubmit = values => {
+    this.props.logIn(values);
   };
 
   render() {
     return !this.props.token ? (
-      <LoginForm processing={this.props.processing} loginFail={this.props.loginFail} onSubmit={this.submit} />
+      <LoginForm
+        processing={this.props.processing}
+        loginFail={this.props.loginFail}
+        onSubmit={this.handleSubmit}
+      />
     ) : (
       <Redirect to="/" />
     );

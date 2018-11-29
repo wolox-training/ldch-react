@@ -7,7 +7,7 @@ function Input({ placeholder, input, type, meta }) {
   return (
     <Fragment>
       <input className={style.input} {...input} placeholder={placeholder} type={type} />
-      {meta.error && meta.touched && <div className={style.fieldError}>{meta.error}</div>}
+      {meta.error && meta.touched && <h4 className={style.fieldError}>{meta.error}</h4>}
     </Fragment>
   );
 }

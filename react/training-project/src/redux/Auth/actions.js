@@ -10,16 +10,7 @@ export const actions = {
   LOG_OUT_FAIL: '@@AUTH/LOG_OUT_FAIL'
 };
 
-const actionCreators = {
-  logIn: user => dispatch => {
-    dispatch(actionCreators.logInProcessing(true));
-    setTimeout(async () => {
-      const token = await AuthService.logIn(user);
-      if (!token) return dispatch(actionCreators.logInFail(true, false));
-      dispatch(actionCreators.logInSuccess(token, false));
-    }, 1500);
-  },
-
+const privateActionsCreators = {
   logInProcessing: bool => ({
     type: actions.LOG_IN_PROCESSING,
     payload: bool
@@ -40,6 +31,21 @@ const actionCreators = {
       processing
     }
   })
+};
+
+const actionCreators = {
+  logIn: ({ username, password }) => async dispatch => {
+    dispatch(privateActionsCreators.logInProcessing(true));
+    let token = null;
+    const response = await AuthService.logIn({ username, password });
+
+    if (response.ok) {
+      token = response.data.length > 0 ? window.btoa(username + password) : null;
+    }
+
+    if (!token) return dispatch(privateActionsCreators.logInFail(true, false));
+    dispatch(privateActionsCreators.logInSuccess(token, false));
+  }
 };
 
 export default actionCreators;

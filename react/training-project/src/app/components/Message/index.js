@@ -3,7 +3,7 @@ import React from 'react';
 import style from './styles.scss';
 
 function Message({ children }) {
-  return <div className={style.error}>{children}</div>;
+  return <h3 className={style.error}>{children}</h3>;
 }
 
 export default Message;
