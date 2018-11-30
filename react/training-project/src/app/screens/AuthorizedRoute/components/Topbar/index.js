@@ -1,7 +1,13 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Topbar() {
-  return <h1>This is the Topbar</h1>;
+  return (
+    <nav>
+      <NavLink to="/app/game">Play</NavLink>
+      <NavLink to="/app/Profile">Profile</NavLink>
+    </nav>
+  );
 }
 
 export default Topbar;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import logo from '../logo.svg';
 
@@ -20,8 +20,7 @@ class App extends Component {
         <Router>
           <Switch>
             <Route path="/login" component={Login} />
-            <Route path="/app" exact component={AuthorizedRoute} />
-            <Redirect to="/login" />
+            <Route path="/app" component={AuthorizedRoute} />
           </Switch>
         </Router>
       </div>

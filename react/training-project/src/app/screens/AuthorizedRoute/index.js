@@ -18,16 +18,14 @@ class AuthorizedRoute extends Component {
         <Switch>
           <Route path={`${match.path}/game`} component={Game} />
           <Route path={`${match.path}/profile`} component={Profile} />
-          <Redirect to={`${match.path}/game`} />
         </Switch>
-        <Game />
       </Fragment>
     );
   }
 }
 
 AuthorizedRoute.propTypes = {
-  match: PropTypes.arrayOf(PropTypes.object),
+  match: PropTypes.objectOf(PropTypes.any).isRequired,
   token: PropTypes.string
 };
 
