@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
+import PropTypes from 'prop-types';
 
 import logo from '../logo.svg';
 
@@ -17,15 +19,20 @@ class App extends Component {
           <img src={logo} className={style.appLogo} alt="logo" />
           <h1 className={style.appTitle}>{this.APP_TITLE}</h1>
         </header>
-        <Router>
+        <ConnectedRouter history={this.props.history}>
           <Switch>
             <Route path="/login" component={Login} />
             <Route path="/app" component={AuthorizedRoute} />
+            <Redirect to="/login" />
           </Switch>
-        </Router>
+        </ConnectedRouter>
       </div>
     );
   }
 }
+
+App.propTypes = {
+  history: PropTypes.objectOf(PropTypes.any).isRequired
+};
 
 export default App;
