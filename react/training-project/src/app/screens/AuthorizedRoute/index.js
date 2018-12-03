@@ -21,7 +21,7 @@ class AuthorizedRoute extends Component {
         <Topbar logOut={this.handleLogOut} />
         <Switch>
           <Route path={`${match.path}/game`} component={Game} />
-          <Route path={`${match.path}/profile`} render={() => <Profile show />} />
+          <Route path={`${match.path}/profile`} component={Profile} />
         </Switch>
       </Fragment>
     );

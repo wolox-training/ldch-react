@@ -1,20 +1,21 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 
+import ProfileDumb from './layout';
 import style from './styles.scss';
 
-function Profile({ show }) {
+function Profile() {
   return (
     <CSSTransition
-      in={show}
+      in
       appear
       timeout={600}
       classNames={{
-        appear: style.fadeAppear,
-        appearActive: style.fadeAppearActive
+        appear: style.profileAppear,
+        appearActive: style.profileAppearActive
       }}
     >
-      <h1>This is the Profile Screen!</h1>
+      <ProfileDumb />
     </CSSTransition>
   );
 }

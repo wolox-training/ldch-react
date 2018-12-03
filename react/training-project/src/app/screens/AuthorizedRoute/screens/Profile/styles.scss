@@ -1,12 +1,54 @@
 @import 'src/scss/colors';
 @import 'src/scss/fixed-sizes';
 
-.fade-appear {
+.profile-appear {
   opacity: 0;
   z-index: 1;
 
-  &.fade-appear-active {
+  &.profile-appear-active {
     transition: opacity 600ms linear;
     opacity: 1;
+  }
+}
+
+.profile-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  margin: 50px auto;
+  max-width: 450px;
+
+  .charge {
+    color: $font-danger;
+    grid-column: 2 / 4;
+    margin: 0;
+  }
+
+  .data {
+    background-color: $primary;
+    border-radius: 10px;
+    color: $white;
+    display: grid;
+    font-weight: bold;
+    grid-column: 1 / 4;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 20px;
+    padding: 15px;
+    width: 100%;
+  }
+
+  .description {
+    grid-column: 2 / 4;
+  }
+
+  .name {
+    grid-column: 2 / 4;
+    margin-bottom: 0;
+  }
+
+  .photo {
+    grid-row: 1 / 4;
+    height: 100px;
+    width: 100px;
   }
 }
