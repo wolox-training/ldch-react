@@ -9,7 +9,7 @@ function Profile() {
     <CSSTransition
       in
       appear
-      timeout={600}
+      timeout={300}
       classNames={{
         appear: style.profileAppear,
         appearActive: style.profileAppearActive

@@ -1,13 +1,30 @@
 @import 'src/scss/colors';
 @import 'src/scss/fixed-sizes';
 
+.data-appear {
+  transform: translate(-1000px);
+
+  &.data-appear-active {
+    transition: transform 300ms linear 300ms;
+    transform: translate(0);
+  }
+}
+
 .profile-appear {
   opacity: 0;
-  z-index: 1;
 
   &.profile-appear-active {
-    transition: opacity 600ms linear;
+    transition: opacity 300ms linear;
     opacity: 1;
+  }
+}
+
+.photo-appear {
+  transform: scale(0.5);
+
+  &.photo-appear-active {
+    transition: transform 300ms linear 600ms;
+    transform: scale(1);
   }
 }
 
@@ -50,5 +67,10 @@
     grid-row: 1 / 4;
     height: 100px;
     width: 100px;
+    transition: transform 300ms ease-in-out; 
+
+    &:hover {
+      transform: scale(1.3);
+    }
   }
 }
