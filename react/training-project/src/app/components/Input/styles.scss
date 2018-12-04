@@ -1,0 +1,13 @@
+@import 'src/scss/fixed-sizes';
+@import 'src/scss/colors';
+
+.field-error {
+  color: $font-danger;
+}
+
+.input {
+  border-radius: 5px;
+  font-size: $large;
+  padding: 15px 10px;
+  width: 80%;
+}

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 /* eslint-disable import/order */
 import Button from '~components/Button';
 import actionCreators from '~redux/History/actions';
 import { calculateWinner } from '~utils/gameUtils';
 
-import Board from './components/Board';
-import style from './styles.scss';
+import GameDumb from './layout';
 
 class Game extends Component {
   render() {
@@ -27,18 +27,10 @@ class Game extends Component {
       );
     });
 
-    return (
-      <div className={style.game}>
-        <div className={style.gameBoard}>
-          <Board squares={current.squares} />
-        </div>
-        <div className={style.gameInfo}>
-          <h3 className={style.status}>
-            {winner ? `Winner: ${winner}` : `Next Player ${this.props.xIsNext ? 'X' : 'O'}`}
-          </h3>
-          <ol>{moves}</ol>
-        </div>
-      </div>
+    return this.props.logged ? (
+      <GameDumb current={current} winner={winner} xIsNext={this.props.xIsNext} moves={moves} />
+    ) : (
+      <Redirect to="/login" />
     );
   }
 }
@@ -46,14 +38,17 @@ class Game extends Component {
 Game.propTypes = {
   history: PropTypes.arrayOf(PropTypes.object).isRequired,
   stepNumber: PropTypes.number.isRequired,
+  logged: PropTypes.string,
   jumpTo: PropTypes.func.isRequired,
   xIsNext: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
-  history: state.history,
-  stepNumber: state.stepNumber,
-  xIsNext: state.xIsNext
+  state,
+  history: state.history.history,
+  logged: state.auth.token,
+  stepNumber: state.history.stepNumber,
+  xIsNext: state.history.xIsNext
 });
 
 const mapDispatchToProps = dispatch => ({

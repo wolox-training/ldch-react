@@ -1,0 +1,15 @@
+{
+  "sessions": [
+    {
+      "token": "bm9zb3lsZW9uQGdtYWlsLmNvbTEyMzQ1Njc4",
+      "id": 1
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "nosoyleon@gmail.com",
+      "password": "12345678"
+    }
+  ]
+}

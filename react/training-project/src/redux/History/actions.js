@@ -12,6 +12,7 @@ const actionCreators = {
     type: actions.SET_SQUARE_CLICK,
     payload: newState
   }),
+
   handleClick: ({ history, stepNumber, xIsNext, id }) => {
     const newhistory = history.slice(0, stepNumber + 1);
     const current = newhistory[newhistory.length - 1];

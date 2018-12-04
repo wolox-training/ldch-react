@@ -14,6 +14,7 @@ class Square extends Component {
       stepNumber: this.props.stepNumber,
       xIsNext: this.props.xIsNext
     });
+
   render() {
     return (
       <button className={style.square} onClick={this.handleClick}>
@@ -24,9 +25,9 @@ class Square extends Component {
 }
 
 const mapStateToProps = state => ({
-  history: state.history,
-  stepNumber: state.stepNumber,
-  xIsNext: state.xIsNext
+  history: state.history.history,
+  stepNumber: state.history.stepNumber,
+  xIsNext: state.history.xIsNext
 });
 
 const mapDispatchToProps = dispatch => ({

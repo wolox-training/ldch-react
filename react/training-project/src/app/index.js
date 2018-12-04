@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import logo from '../logo.svg';
 
 import Game from './screens/Game';
+import Login from './screens/Login';
 import style from './styles.scss';
 
 class App extends Component {
@@ -15,7 +17,13 @@ class App extends Component {
           <img src={logo} className={style.appLogo} alt="logo" />
           <h1 className={style.appTitle}>{this.APP_TITLE}</h1>
         </header>
-        <Game />
+        <Router>
+          <Switch>
+            <Route path="/login" component={Login} />
+            <Route path="/" exact component={Game} />
+            <Redirect to="/login" />
+          </Switch>
+        </Router>
       </div>
     );
   }
