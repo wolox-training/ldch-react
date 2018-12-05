@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import actionCreators from '~redux/Auth/actions';
+import actionCreators from '~redux/Auth/actions'; // eslint-disable-line
+import FectData from '~components/FetchData';
 
 import LoginForm from './layout';
 
@@ -15,10 +16,11 @@ class LoginPage extends Component {
 
   render() {
     return !this.props.token ? (
-      <LoginForm
-        processing={this.props.processing}
+      <FectData
         loginFail={this.props.loginFail}
         onSubmit={this.handleSubmit}
+        WrappedComponent={LoginForm}
+        processing={this.props.processing}
       />
     ) : (
       <Redirect to="/app/game" />
