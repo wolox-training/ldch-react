@@ -66,8 +66,8 @@
   .photo {
     grid-row: 1 / 4;
     height: 100px;
-    width: 100px;
     transition: transform 300ms ease-in-out; 
+    width: 100px;
 
     &:hover {
       transform: scale(1.3);

@@ -21,7 +21,7 @@ class AuthorizedRoute extends Component {
         <Topbar logOut={this.handleLogOut} />
         <Switch>
           <Route path={GAME} component={Game} />
-          <Route path={PROFILE} component={Profile} />
+          <Route path={PROFILE} render={() => <Profile {...this.props.userdata} />} />
         </Switch>
       </Fragment>
     );
@@ -30,11 +30,13 @@ class AuthorizedRoute extends Component {
 
 AuthorizedRoute.propTypes = {
   token: PropTypes.string,
-  logOut: PropTypes.func.isRequired
+  logOut: PropTypes.func.isRequired,
+  userdata: PropTypes.objectOf(PropTypes.any).isRequired
 };
 
 const mapStateToProps = state => ({
-  token: state.auth.token
+  token: state.auth.token,
+  userdata: state.auth.userdata
 });
 
 const mapDispatchToProps = dispatch => ({
