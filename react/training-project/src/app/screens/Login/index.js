@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import actionCreators from '~redux/Auth/actions'; // eslint-disable-line
+/* eslint-disable import/order */
+import actionCreators from '~redux/Auth/actions';
 import FectData from '~components/FetchData';
+import { GAME } from '~components/Routes/constants';
 
 import LoginForm from './layout';
 
@@ -23,7 +25,7 @@ class LoginPage extends Component {
         processing={this.props.processing}
       />
     ) : (
-      <Redirect to="/app/game" />
+      <Redirect to={GAME} />
     );
   }
 }

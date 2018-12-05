@@ -1,31 +1,31 @@
 @import 'src/scss/colors';
 
 .centerfy {
-  position: absolute;
   left: 50%;
+  position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
 }
 
 .spiner {
+  animation: anim-spin 1s infinite ease;
+  height: 100px;
   position: relative;
   width: 100px;
-  height: 100px;
-  animation: anim-spin 1s infinite ease;
-}
 
-.spiner:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  border-top: solid 10px $primary;
-  border-right: solid 10px transparent;
-  border-bottom: solid 10px $primary;
-  border-left: solid 10px transparent;
-  border-radius: 100%;  
+  &:after {
+    content: "";
+    bottom: 0;
+    border-bottom: solid 10px $primary;
+    border-left: solid 10px transparent;
+    border-radius: 100%;  
+    border-right: solid 10px transparent;
+    border-top: solid 10px $primary;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 }
 
 @keyframes anim-spin {
