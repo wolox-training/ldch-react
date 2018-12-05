@@ -7,7 +7,7 @@
       "password": "12345678",
       "data": {
         "name": "León Ceballos",
-        "photoUrl": "http://localhost:3000/static/media/lion.644701ef.png",
+        "photoUrl": "",
         "charge": "Front-End Developer",
         "description": "I use to design websites and applications.",
         "won": 56,
