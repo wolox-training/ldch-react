@@ -3,7 +3,8 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import actionCreators from '~redux/Auth/actions';
+import actionCreators from '~redux/Auth/actions'; // eslint-disable-line
+import { GAME, PROFILE, LOGIN } from '~components/Routes/constants';
 
 import Topbar from './components/Topbar';
 import Game from './screens/Game';
@@ -13,15 +14,14 @@ class AuthorizedRoute extends Component {
   handleLogOut = () => this.props.logOut(this.props.token);
 
   render() {
-    const { match } = this.props;
     return !this.props.token ? (
-      <Redirect to="/login" />
+      <Redirect to={LOGIN} />
     ) : (
       <Fragment>
         <Topbar logOut={this.handleLogOut} />
         <Switch>
-          <Route path={`${match.path}/game`} component={Game} />
-          <Route path={`${match.path}/profile`} component={Profile} />
+          <Route path={GAME} component={Game} />
+          <Route path={PROFILE} component={Profile} />
         </Switch>
       </Fragment>
     );
@@ -29,13 +29,11 @@ class AuthorizedRoute extends Component {
 }
 
 AuthorizedRoute.propTypes = {
-  match: PropTypes.objectOf(PropTypes.any).isRequired,
   token: PropTypes.string,
   logOut: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  state,
   token: state.auth.token
 });
 

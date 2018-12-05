@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
+
+import { HOME, LOGIN } from '~components/Routes/constants';
 
 import logo from '../logo.svg';
 
@@ -21,9 +23,9 @@ class App extends Component {
         </header>
         <ConnectedRouter history={this.props.history}>
           <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/app" component={AuthorizedRoute} />
-            <Redirect to="/login" />
+            <Route path={LOGIN} component={Login} />
+            <Route path={HOME} component={AuthorizedRoute} />
+            <Redirect to={LOGIN} />
           </Switch>
         </ConnectedRouter>
       </div>
