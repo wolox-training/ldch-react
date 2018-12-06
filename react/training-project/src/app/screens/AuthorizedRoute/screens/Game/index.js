@@ -38,7 +38,6 @@ Game.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  state,
   history: state.history.history,
   stepNumber: state.history.stepNumber,
   xIsNext: state.history.xIsNext
