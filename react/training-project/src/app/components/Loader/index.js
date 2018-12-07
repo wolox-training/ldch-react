@@ -4,9 +4,9 @@ import style from './styles.scss';
 
 function Loader() {
   return (
-    <div className={style.centerfy}>
-      <div className={style.spiner} />
-    </div>
+    <svg className={style.spinner}>
+      <circle className={style.circle} cx="50%" cy="50%" r="25" />
+    </svg>
   );
 }
 

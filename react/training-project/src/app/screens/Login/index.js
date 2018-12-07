@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 /* eslint-disable import/order */
 import actionCreators from '~redux/Auth/actions';
-import FectData from '~components/FetchData';
+import FetchData from '~components/FetchData';
 import { GAME } from '~components/Routes/constants';
 
 import LoginForm from './layout';
@@ -15,7 +15,7 @@ class LoginPage extends Component {
 
   render() {
     return !this.props.token ? (
-      <FectData
+      <FetchData
         loginFail={this.props.loginFail}
         onSubmit={this.handleSubmit}
         WrappedComponent={LoginForm}

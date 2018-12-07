@@ -1,38 +1,25 @@
 @import 'src/scss/colors';
 
-.centerfy {
+.circle {
+  animation: loading 1s infinite ease-in-out;
+  fill: $primary;
+}
+
+.spinner {
+  height: 70px;
   left: 50%;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
+  width: 300px;
 }
 
-.spiner {
-  animation: anim-spin 1s infinite ease;
-  height: 100px;
-  position: relative;
-  width: 100px;
-
-  &:after {
-    content: "";
-    bottom: 0;
-    border-bottom: solid 10px $primary;
-    border-left: solid 10px transparent;
-    border-radius: 100%;  
-    border-right: solid 10px transparent;
-    border-top: solid 10px $primary;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
+@keyframes loading {
+  25% {
+    transform: translateX(100px);
   }
-}
 
-@keyframes anim-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+  75% {
+    transform: translateX(-100px);
   }
 }
