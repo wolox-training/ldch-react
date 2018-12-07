@@ -5,7 +5,7 @@ export const actions = {
   LOG_IN_SUCCESS: '@@AUTH/LOG_IN_SUCCESS',
   LOG_IN_FAIL: '@@AUTH/LOG_IN_FAIL',
   LOG_IN_PROCESSING: '@AUTH/LOG_IN_PROCESSING',
-  LOG_OUT: '@@AUTH/V',
+  LOG_OUT: '@@AUTH/LOG_OUT',
   LOG_OUT_SUCCESS: '@@AUTH/LOG_OUT_SUCCESS',
   LOG_OUT_FAIL: '@@AUTH/LOG_OUT_FAIL',
   SET_USER_DATA: '@@AUTH/SET_USER_DATA'
@@ -50,6 +50,10 @@ const privateActionsCreators = {
       lost,
       draw
     }
+  }),
+
+  logOutFail: () => ({
+    type: actions.LOG_OUT_FAIL
   })
 };
 
@@ -73,15 +77,18 @@ const actionCreators = {
   logOut: token => async dispatch => {
     const response = await AuthService.getToken(token);
 
+    if (!response.data) return dispatch(privateActionsCreators.logOutFail());
     if (response.ok && response.data.length > 0) {
-      response.data.forEach(async element => {
-        const deletedToken = await AuthService.logOut(element.id);
-        if (!deletedToken.ok) return { type: actions.LOG_OUT_FAIL };
+      const deletedTokens = response.data.map(async element => {
+        const deleted = await AuthService.logOut(element.id);
+        return deleted.ok;
       });
 
+      const result = await Promise.all(deletedTokens);
+      if (result.includes(false)) return dispatch(privateActionsCreators.logOutFail());
       dispatch(privateActionsCreators.logOutSuccess());
     } else {
-      return { type: actions.LOG_OUT_FAIL };
+      return dispatch(privateActionsCreators.logOutFail());
     }
   }
 };
