@@ -8,7 +8,7 @@
   max-width: 600px;
 }
 
-.navbarButton {
+.navbar-button {
   border: 0;
   color: $font-danger;
   cursor: pointer;
@@ -16,7 +16,7 @@
   font-weight: bold;
 }
 
-.navbarItem {
+.navbar-item {
   border-bottom: 3px solid $border;
   border-radius: 10px 10px 0 0;
   color: $black;

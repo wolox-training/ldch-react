@@ -1,22 +1,21 @@
 import React, { Component, Fragment } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import actionCreators from '~redux/Auth/actions'; // eslint-disable-line
-import { GAME, PROFILE, LOGIN } from '~components/Routes/constants';
+/* eslint-disable import/order */
+import actionCreators from '~redux/Auth/actions';
+import { GAME, PROFILE } from '~components/Routes/constants';
+import Topbar from '~components/Topbar';
 
-import Topbar from './components/Topbar';
 import Game from './screens/Game';
 import Profile from './screens/Profile';
 
-class AuthorizedRoute extends Component {
+class PrimaryLayout extends Component {
   handleLogOut = () => this.props.logOut(this.props.token);
 
   render() {
-    return !this.props.token ? (
-      <Redirect to={LOGIN} />
-    ) : (
+    return (
       <Fragment>
         <Topbar logOut={this.handleLogOut} />
         <Switch>
@@ -28,14 +27,12 @@ class AuthorizedRoute extends Component {
   }
 }
 
-AuthorizedRoute.propTypes = {
-  token: PropTypes.string,
+PrimaryLayout.propTypes = {
   logOut: PropTypes.func.isRequired,
   userdata: PropTypes.objectOf(PropTypes.any).isRequired
 };
 
 const mapStateToProps = state => ({
-  token: state.auth.token,
   userdata: state.auth.userdata
 });
 
@@ -46,4 +43,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AuthorizedRoute);
+)(PrimaryLayout);

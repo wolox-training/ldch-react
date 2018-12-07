@@ -39,17 +39,9 @@ const privateActionsCreators = {
     payload: null
   }),
 
-  setUserData: ({ name, photoUrl, charge, description, won, lost, draw }) => ({
+  setUserData: payload => ({
     type: actions.SET_USER_DATA,
-    payload: {
-      name,
-      photoUrl,
-      charge,
-      description,
-      won,
-      lost,
-      draw
-    }
+    payload
   }),
 
   logOutFail: () => ({
@@ -62,13 +54,14 @@ const actionCreators = {
     dispatch(privateActionsCreators.logInProcessing(true));
     const response = await AuthService.logIn({ username, password });
 
+    if (!response.data) return dispatch(privateActionsCreators.logInFail(true, false));
     if (response.ok && response.data.length > 0) {
       const token = window.btoa(username + password);
       const tokenPosted = await AuthService.postToken(token);
 
       if (!tokenPosted.ok) return dispatch(privateActionsCreators.logInFail(true, false));
       dispatch(privateActionsCreators.logInSuccess(token, false, false));
-      dispatch(privateActionsCreators.setUserData(response.data[0].data));
+      dispatch(privateActionsCreators.setUserData({ ...response.data[0].data }));
     } else {
       dispatch(privateActionsCreators.logInFail(true, false));
     }

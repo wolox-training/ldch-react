@@ -7,7 +7,6 @@ import actionCreators from '~redux/Auth/actions';
 
 import LoginForm from './layout';
 
-/* eslint-disable no-func-assign */
 class LoginPage extends Component {
   handleSubmit = values => this.props.logIn(values);
 

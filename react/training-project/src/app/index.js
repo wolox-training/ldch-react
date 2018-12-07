@@ -1,13 +1,15 @@
 import { ConnectedRouter } from 'connected-react-router';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
-import { HOME, LOGIN } from '~components/Routes/constants';
+import { LOGIN, HOME } from '~components/Routes/constants';
+
+import AuthorizedRoute from '~components/AuthorizedRoute';
 
 import logo from '../logo.svg';
 
-import AuthorizedRoute from './screens/AuthorizedRoute';
+import PrimaryLayout from './screens/PrimaryLayout';
 import Login from './screens/Login';
 import style from './styles.scss';
 
@@ -24,7 +26,7 @@ class App extends Component {
         <ConnectedRouter history={this.props.history}>
           <Switch>
             <Route path={LOGIN} component={Login} />
-            <Route path={HOME} component={AuthorizedRoute} />
+            <AuthorizedRoute path={HOME} WrappedComponent={PrimaryLayout} />
             <Redirect to={LOGIN} />
           </Switch>
         </ConnectedRouter>
