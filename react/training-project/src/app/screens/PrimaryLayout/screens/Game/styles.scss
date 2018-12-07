@@ -6,12 +6,12 @@
   max-width: 600px;
 
   @media screen and (max-width: 1024px) {
-    grid-gap: 30px; 
+    grid-gap: 30px;
     grid-template-columns: 1fr;
   }
 }
 
-.gameBoard {
+.game-board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   min-width: 300px;

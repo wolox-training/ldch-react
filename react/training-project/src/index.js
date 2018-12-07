@@ -6,7 +6,7 @@ import { createBrowserHistory } from 'history';
 import createstore from './redux/store';
 import './scss/index.scss';
 import registerServiceWorker from './registerServiceWorker';
-import App from './app'; // eslint-disable-line import/first
+import App from './app';
 
 const history = createBrowserHistory();
 const store = createstore(history);

@@ -10,11 +10,8 @@ import { GAME } from '~components/Routes/constants';
 
 import LoginForm from './layout';
 
-/* eslint-disable no-func-assign */
 class LoginPage extends Component {
-  handleSubmit = values => {
-    this.props.logIn(values);
-  };
+  handleSubmit = values => this.props.logIn(values);
 
   render() {
     return !this.props.token ? (
@@ -38,7 +35,6 @@ LoginPage.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  state,
   token: state.auth.token,
   loginFail: state.auth.loginFail,
   processing: state.auth.processing
