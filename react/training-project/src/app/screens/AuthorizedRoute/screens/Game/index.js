@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
 
 /* eslint-disable import/order */
 import Button from '~components/Button';
@@ -27,26 +26,19 @@ class Game extends Component {
       );
     });
 
-    return this.props.logged ? (
-      <GameDumb current={current} winner={winner} xIsNext={this.props.xIsNext} moves={moves} />
-    ) : (
-      <Redirect to="/login" />
-    );
+    return <GameDumb current={current} winner={winner} xIsNext={this.props.xIsNext} moves={moves} />;
   }
 }
 
 Game.propTypes = {
   history: PropTypes.arrayOf(PropTypes.object).isRequired,
   stepNumber: PropTypes.number.isRequired,
-  logged: PropTypes.string,
   jumpTo: PropTypes.func.isRequired,
   xIsNext: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
-  state,
   history: state.history.history,
-  logged: state.auth.token,
   stepNumber: state.history.stepNumber,
   xIsNext: state.history.xIsNext
 });

@@ -1,9 +1,13 @@
+import { ConnectedRouter } from 'connected-react-router';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
+
+import { HOME, LOGIN } from '~components/Routes/constants';
 
 import logo from '../logo.svg';
 
-import Game from './screens/Game';
+import AuthorizedRoute from './screens/AuthorizedRoute';
 import Login from './screens/Login';
 import style from './styles.scss';
 
@@ -17,16 +21,20 @@ class App extends Component {
           <img src={logo} className={style.appLogo} alt="logo" />
           <h1 className={style.appTitle}>{this.APP_TITLE}</h1>
         </header>
-        <Router>
+        <ConnectedRouter history={this.props.history}>
           <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/" exact component={Game} />
-            <Redirect to="/login" />
+            <Route path={LOGIN} component={Login} />
+            <Route path={HOME} component={AuthorizedRoute} />
+            <Redirect to={LOGIN} />
           </Switch>
-        </Router>
+        </ConnectedRouter>
       </div>
     );
   }
 }
+
+App.propTypes = {
+  history: PropTypes.objectOf(PropTypes.any).isRequired
+};
 
 export default App;

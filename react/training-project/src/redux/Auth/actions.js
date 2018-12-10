@@ -5,7 +5,7 @@ export const actions = {
   LOG_IN_SUCCESS: '@@AUTH/LOG_IN_SUCCESS',
   LOG_IN_FAIL: '@@AUTH/LOG_IN_FAIL',
   LOG_IN_PROCESSING: '@AUTH/LOG_IN_PROCESSING',
-  LOG_OUT: '@@AUTH/V',
+  LOG_OUT: '@@AUTH/LOG_OUT',
   LOG_OUT_SUCCESS: '@@AUTH/LOG_OUT_SUCCESS',
   LOG_OUT_FAIL: '@@AUTH/LOG_OUT_FAIL'
 };
@@ -24,27 +24,57 @@ const privateActionsCreators = {
     }
   }),
 
-  logInSuccess: (token, processing) => ({
+  logInSuccess: (token, processing, loginFail) => ({
     type: actions.LOG_IN_SUCCESS,
     payload: {
       token,
-      processing
+      processing,
+      loginFail
     }
+  }),
+
+  logOutSuccess: () => ({
+    type: actions.LOG_OUT_SUCCESS,
+    payload: null
+  }),
+
+  logOutFail: () => ({
+    type: actions.LOG_OUT_FAIL
   })
 };
 
 const actionCreators = {
   logIn: ({ username, password }) => async dispatch => {
     dispatch(privateActionsCreators.logInProcessing(true));
-    let token = null;
     const response = await AuthService.logIn({ username, password });
 
-    if (response.ok) {
-      token = response.data.length > 0 ? window.btoa(username + password) : null;
-    }
+    if (response.ok && response.data.length > 0) {
+      const token = window.btoa(username + password);
+      const tokenPosted = await AuthService.postToken(token);
 
-    if (!token) return dispatch(privateActionsCreators.logInFail(true, false));
-    dispatch(privateActionsCreators.logInSuccess(token, false));
+      if (!tokenPosted.ok) return dispatch(privateActionsCreators.logInFail(true, false));
+      dispatch(privateActionsCreators.logInSuccess(token, false, false));
+    } else {
+      dispatch(privateActionsCreators.logInFail(true, false));
+    }
+  },
+
+  logOut: token => async dispatch => {
+    const response = await AuthService.getToken(token);
+
+    if (!response.data) return dispatch(privateActionsCreators.logOutFail());
+    if (response.ok && response.data.length > 0) {
+      const deletedTokens = response.data.map(async element => {
+        const deleted = await AuthService.logOut(element.id);
+        return deleted.ok;
+      });
+
+      const result = await Promise.all(deletedTokens);
+      if (result.includes(false)) return dispatch(privateActionsCreators.logOutFail());
+      dispatch(privateActionsCreators.logOutSuccess());
+    } else {
+      return dispatch(privateActionsCreators.logOutFail());
+    }
   }
 };
 

@@ -12,7 +12,8 @@ function reducer(state = initalState, action) {
       return {
         ...state,
         token: action.payload.token,
-        processing: action.payload.processing
+        processing: action.payload.processing,
+        loginFail: action.payload.loginFail
       };
     case actions.LOG_IN_FAIL:
       return {
@@ -24,6 +25,11 @@ function reducer(state = initalState, action) {
       return {
         ...state,
         processing: action.payload
+      };
+    case actions.LOG_OUT_SUCCESS:
+      return {
+        ...state,
+        token: actions.payload
       };
     default:
       return state;
