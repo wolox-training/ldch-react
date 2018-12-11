@@ -2,58 +2,62 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
 
+/* eslint-disable import/order */
 import defaultPhoto from '~assets/hacker.png';
+import PrimaryLayout from '~components/PrimaryLayout';
 
 import style from './styles.scss';
 import { WON, LOST, DRAW } from './constants';
 
-function ProfileDumb({ name, photoUrl, charge, description, won, lost, draw }) {
+function Profile({ name, photoUrl, charge, description, won, lost, draw }) {
   return (
-    <CSSTransition
-      in
-      appear
-      timeout={300}
-      classNames={{
-        appear: style.profileAppear,
-        appearActive: style.profileAppearActive
-      }}
-    >
-      <div className={style.profileContainer}>
-        <CSSTransition
-          in
-          appear
-          timeout={900}
-          classNames={{
-            appear: style.photoAppear,
-            appearActive: style.photoAppearActive
-          }}
-        >
-          <img className={style.photo} src={photoUrl || defaultPhoto} alt="profile" />
-        </CSSTransition>
-        <h2 className={style.name}>{name}</h2>
-        <h4 className={style.charge}>{charge}</h4>
-        <p className={style.description}>{description}</p>
-        <CSSTransition
-          in
-          appear
-          timeout={600}
-          classNames={{
-            appear: style.dataAppear,
-            appearActive: style.dataAppearActive
-          }}
-        >
-          <div className={style.data}>
-            <span>{`${WON}: ${won}`}</span>
-            <span>{`${LOST}: ${lost}`}</span>
-            <span>{`${DRAW}: ${draw}`}</span>
-          </div>
-        </CSSTransition>
-      </div>
-    </CSSTransition>
+    <PrimaryLayout>
+      <CSSTransition
+        in
+        appear
+        timeout={300}
+        classNames={{
+          appear: style.profileAppear,
+          appearActive: style.profileAppearActive
+        }}
+      >
+        <div className={style.profileContainer}>
+          <CSSTransition
+            in
+            appear
+            timeout={900}
+            classNames={{
+              appear: style.photoAppear,
+              appearActive: style.photoAppearActive
+            }}
+          >
+            <img className={style.photo} src={photoUrl || defaultPhoto} alt="profile" />
+          </CSSTransition>
+          <h2 className={style.name}>{name}</h2>
+          <h4 className={style.charge}>{charge}</h4>
+          <p className={style.description}>{description}</p>
+          <CSSTransition
+            in
+            appear
+            timeout={600}
+            classNames={{
+              appear: style.dataAppear,
+              appearActive: style.dataAppearActive
+            }}
+          >
+            <div className={style.data}>
+              <span>{`${WON}: ${won}`}</span>
+              <span>{`${LOST}: ${lost}`}</span>
+              <span>{`${DRAW}: ${draw}`}</span>
+            </div>
+          </CSSTransition>
+        </div>
+      </CSSTransition>
+    </PrimaryLayout>
   );
 }
 
-ProfileDumb.propTypes = {
+Profile.propTypes = {
   name: PropTypes.string.isRequired,
   photoUrl: PropTypes.string.isRequired,
   charge: PropTypes.string.isRequired,
@@ -63,4 +67,4 @@ ProfileDumb.propTypes = {
   draw: PropTypes.number.isRequired
 };
 
-export default ProfileDumb;
+export default Profile;

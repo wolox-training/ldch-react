@@ -8,18 +8,18 @@ import actionCreators from '~redux/Auth/actions';
 import FetchData from '~components/FetchData';
 import { GAME } from '~components/Routes/constants';
 
-import LoginForm from './layout';
+import Login from './layout';
 
-class LoginPage extends Component {
+class LoginContainer extends Component {
   handleSubmit = values => this.props.logIn(values);
 
   render() {
     return !this.props.token ? (
       <FetchData
+        processing={this.props.processing}
         loginFail={this.props.loginFail}
         onSubmit={this.handleSubmit}
-        WrappedComponent={LoginForm}
-        processing={this.props.processing}
+        WrappedComponent={Login}
       />
     ) : (
       <Redirect to={GAME} />
@@ -27,7 +27,7 @@ class LoginPage extends Component {
   }
 }
 
-LoginPage.propTypes = {
+LoginContainer.propTypes = {
   logIn: PropTypes.func.isRequired,
   loginFail: PropTypes.bool.isRequired,
   token: PropTypes.string,
@@ -47,4 +47,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(LoginPage);
+)(LoginContainer);

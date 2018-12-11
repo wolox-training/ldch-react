@@ -11,7 +11,7 @@ import { USERNAME, PASSWORD, LOG_IN, LOG_IN_FAIL, LOG_IN_FORM } from './constant
 import style from './styles.scss';
 
 /* eslint-disable no-func-assign */
-function LoginForm({ handleSubmit, loginFail }) {
+function Login({ handleSubmit, loginFail }) {
   return (
     <div className={style.formContainer}>
       <form onSubmit={handleSubmit} className={style.loginForm}>
@@ -40,13 +40,13 @@ function LoginForm({ handleSubmit, loginFail }) {
   );
 }
 
-LoginForm.propTypes = {
+Login.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   loginFail: PropTypes.bool.isRequired
 };
 
-LoginForm = reduxForm({
+Login = reduxForm({
   form: LOG_IN_FORM
-})(LoginForm);
+})(Login);
 
-export default LoginForm;
+export default Login;
