@@ -4,7 +4,10 @@ import PropTypes from 'prop-types';
 
 /* eslint-disable import/order */
 import Button from '~components/Button';
+import PrimaryLayout from '~components/PrimaryLayout';
+
 import actionCreators from '~redux/History/actions';
+
 import { calculateWinner } from '~utils/gameUtils';
 
 import GameDumb from './layout';
@@ -26,7 +29,11 @@ class Game extends Component {
       );
     });
 
-    return <GameDumb current={current} winner={winner} xIsNext={this.props.xIsNext} moves={moves} />;
+    return (
+      <PrimaryLayout>
+        <GameDumb current={current} winner={winner} xIsNext={this.props.xIsNext} moves={moves} />
+      </PrimaryLayout>
+    );
   }
 }
 
@@ -45,7 +52,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   jumpTo: step => dispatch(actionCreators.setJumTo(step)),
-  handleClick: newState => dispatch(actionCreators.handleClick(newState))
+  handleClick: newState => dispatch(actionCreators.handleClick(newState)),
+  logOut: token => dispatch(actionCreators.logOut(token))
 });
 
 export default connect(

@@ -1,30 +1,33 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import { GAME, PROFILE as PROFILE_PATH } from '~components/Routes/constants';
+import actionCreators from '~redux/Auth/actions';
 
-import style from './styles.scss';
-import { PLAY, PROFILE, LOGOUT } from './constants';
+import TopbarDumb from './layout';
 
-function Topbar({ logOut }) {
-  return (
-    <nav className={style.navbar}>
-      <NavLink className={style.navbarItem} activeClassName={style.active} to={GAME}>
-        {PLAY}
-      </NavLink>
-      <NavLink className={style.navbarItem} activeClassName={style.active} to={PROFILE_PATH}>
-        {PROFILE}
-      </NavLink>
-      <button type="button" onClick={logOut} className={style.navbarButton}>
-        {LOGOUT}
-      </button>
-    </nav>
-  );
+class Topbar extends Component {
+  handleLogOut = () => this.props.logOut(this.props.token);
+
+  render() {
+    return <TopbarDumb logOut={this.handleLogOut} />;
+  }
 }
 
 Topbar.propTypes = {
-  logOut: PropTypes.func.isRequired
+  logOut: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired
 };
 
-export default Topbar;
+const mapStateToProps = state => ({
+  token: state.auth.token
+});
+
+const mapDispatchToProps = dispatch => ({
+  logOut: token => dispatch(actionCreators.logOut(token))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Topbar);
