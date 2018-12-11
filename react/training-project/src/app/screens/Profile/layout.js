@@ -1,13 +1,13 @@
 import React from 'react';
-import { CSSTransition } from 'react-transition-group';
 import PropTypes from 'prop-types';
+import { CSSTransition } from 'react-transition-group';
 
 import defaultPhoto from '~assets/hacker.png';
 
-import { WON, LOST, DRAW } from './constants';
 import style from './styles.scss';
+import { WON, LOST, DRAW } from './constants';
 
-function Profile({ name, photoUrl, charge, description, won, lost, draw }) {
+function ProfileDumb({ name, photoUrl, charge, description, won, lost, draw }) {
   return (
     <CSSTransition
       in
@@ -28,7 +28,7 @@ function Profile({ name, photoUrl, charge, description, won, lost, draw }) {
             appearActive: style.photoAppearActive
           }}
         >
-          <img className={style.photo} src={!photoUrl ? defaultPhoto : photoUrl} alt="profile" />
+          <img className={style.photo} src={photoUrl || defaultPhoto} alt="profile" />
         </CSSTransition>
         <h2 className={style.name}>{name}</h2>
         <h4 className={style.charge}>{charge}</h4>
@@ -53,7 +53,7 @@ function Profile({ name, photoUrl, charge, description, won, lost, draw }) {
   );
 }
 
-Profile.propTypes = {
+ProfileDumb.propTypes = {
   name: PropTypes.string.isRequired,
   photoUrl: PropTypes.string.isRequired,
   charge: PropTypes.string.isRequired,
@@ -63,4 +63,4 @@ Profile.propTypes = {
   draw: PropTypes.number.isRequired
 };
 
-export default Profile;
+export default ProfileDumb;
