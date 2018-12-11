@@ -4,17 +4,17 @@ import { connect } from 'react-redux';
 
 import actionCreators from '~redux/Auth/actions';
 
-import TopbarDumb from './layout';
+import Topbar from './layout';
 
-class Topbar extends Component {
+class TopbarContainer extends Component {
   handleLogOut = () => this.props.logOut(this.props.token);
 
   render() {
-    return <TopbarDumb logOut={this.handleLogOut} />;
+    return <Topbar logOut={this.handleLogOut} />;
   }
 }
 
-Topbar.propTypes = {
+TopbarContainer.propTypes = {
   logOut: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired
 };
@@ -30,4 +30,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Topbar);
+)(TopbarContainer);
