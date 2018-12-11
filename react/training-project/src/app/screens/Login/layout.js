@@ -7,10 +7,11 @@ import Message from '~components/Message';
 import Input from '~components/Input';
 import { required, minLength } from '~utils/validationUtils';
 
+import { USERNAME, PASSWORD, LOG_IN, LOG_IN_FAIL, LOG_IN_FORM } from './constants';
 import style from './styles.scss';
 
 /* eslint-disable no-func-assign */
-function Login({ handleSubmit, loginFail, processing }) {
+function Login({ handleSubmit, loginFail }) {
   return (
     <div className={style.formContainer}>
       <form onSubmit={handleSubmit} className={style.loginForm}>
@@ -20,7 +21,7 @@ function Login({ handleSubmit, loginFail, processing }) {
           component={Input}
           validate={[required]}
           type="email"
-          placeholder="Username"
+          placeholder={USERNAME}
         />
         <Field
           name="password"
@@ -28,25 +29,24 @@ function Login({ handleSubmit, loginFail, processing }) {
           validate={[required, minLength]}
           component={Input}
           type="password"
-          placeholder="Password"
+          placeholder={PASSWORD}
         />
         <button className={style.loginButton} type="submit">
-          {processing ? 'Processing' : 'Log in'}
+          {LOG_IN}
         </button>
       </form>
-      {loginFail && <Message>Username or password invalid!</Message>}
+      {loginFail && <Message>{LOG_IN_FAIL}</Message>}
     </div>
   );
 }
 
 Login.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  loginFail: PropTypes.bool.isRequired,
-  processing: PropTypes.bool.isRequired
+  loginFail: PropTypes.bool.isRequired
 };
 
 Login = reduxForm({
-  form: 'login'
+  form: LOG_IN_FORM
 })(Login);
 
 export default Login;

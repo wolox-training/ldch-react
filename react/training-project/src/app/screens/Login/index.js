@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+/* eslint-disable import/order */
 import actionCreators from '~redux/Auth/actions';
+import FetchData from '~components/FetchData';
+import { GAME } from '~components/Routes/constants';
 
 import Login from './layout';
 
@@ -12,13 +15,14 @@ class LoginContainer extends Component {
 
   render() {
     return !this.props.token ? (
-      <Login
+      <FetchData
         processing={this.props.processing}
         loginFail={this.props.loginFail}
         onSubmit={this.handleSubmit}
+        WrappedComponent={Login}
       />
     ) : (
-      <Redirect to="/app/game" />
+      <Redirect to={GAME} />
     );
   }
 }
