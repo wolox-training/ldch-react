@@ -1,0 +1,76 @@
+@import 'src/scss/colors';
+@import 'src/scss/fixed-sizes';
+
+.data-appear {
+  transform: translate(-1000px);
+
+  &.data-appear-active {
+    transform: translate(0);
+    transition: transform 300ms linear 300ms;
+  }
+}
+
+.profile-appear {
+  opacity: 0;
+
+  &.profile-appear-active {
+    opacity: 1;
+    transition: opacity 300ms linear;
+  }
+}
+
+.photo-appear {
+  transform: scale(0.5);
+
+  &.photo-appear-active {
+    transform: scale(1);
+    transition: transform 300ms linear 600ms;
+  }
+}
+
+.profile-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  margin: 50px auto;
+  max-width: 450px;
+
+  .charge {
+    color: $font-danger;
+    grid-column: 2 / 4;
+    margin: 0;
+  }
+
+  .data {
+    background-color: $primary;
+    border-radius: 10px;
+    color: $white;
+    display: grid;
+    font-weight: bold;
+    grid-column: 1 / 4;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 20px;
+    padding: 15px;
+    width: 100%;
+  }
+
+  .description {
+    grid-column: 2 / 4;
+  }
+
+  .name {
+    grid-column: 2 / 4;
+    margin-bottom: 0;
+  }
+
+  .photo {
+    grid-row: 1 / 4;
+    height: 100px;
+    transition: transform 300ms ease-in-out;
+    width: 100px;
+
+    &:hover {
+      transform: scale(1.3);
+    }
+  }
+}

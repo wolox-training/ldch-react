@@ -10,7 +10,7 @@ import { required, minLength } from '~utils/validationUtils';
 import style from './styles.scss';
 
 /* eslint-disable no-func-assign */
-function LoginForm({ handleSubmit, loginFail, processing }) {
+function Login({ handleSubmit, loginFail, processing }) {
   return (
     <div className={style.formContainer}>
       <form onSubmit={handleSubmit} className={style.loginForm}>
@@ -39,14 +39,14 @@ function LoginForm({ handleSubmit, loginFail, processing }) {
   );
 }
 
-LoginForm.propTypes = {
+Login.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   loginFail: PropTypes.bool.isRequired,
   processing: PropTypes.bool.isRequired
 };
 
-LoginForm = reduxForm({
+Login = reduxForm({
   form: 'login'
-})(LoginForm);
+})(Login);
 
-export default LoginForm;
+export default Login;

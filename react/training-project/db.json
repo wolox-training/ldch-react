@@ -4,7 +4,16 @@
     {
       "id": 1,
       "username": "nosoyleon@gmail.com",
-      "password": "12345678"
+      "password": "12345678",
+      "data": {
+        "name": "León Ceballos",
+        "photoUrl": "",
+        "charge": "Front-End Developer",
+        "description": "I use to design websites and applications.",
+        "won": 56,
+        "lost": 20,
+        "draw": 30
+      }
     }
   ]
 }

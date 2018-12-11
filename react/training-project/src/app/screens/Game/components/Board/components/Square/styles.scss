@@ -1,4 +1,4 @@
-@import 'src/scss/_colors';
+@import 'src/scss/colors';
 
 .square {
   background: $white;
@@ -14,8 +14,8 @@
   padding: 0;
   text-align: center;
   width: 100px;
-}
 
-.square:focus {
-  outline: none;
+  &:focus {
+    outline: none;
+  }
 }

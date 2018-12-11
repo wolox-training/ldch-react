@@ -1,13 +1,13 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
 import { GAME, PROFILE as PROFILE_PATH } from '~components/Routes/constants';
 
 import style from './styles.scss';
 import { PLAY, PROFILE, LOGOUT } from './constants';
 
-function Topbar({ logOut }) {
+function TopbarDumb({ logOut }) {
   return (
     <nav className={style.navbar}>
       <NavLink className={style.navbarItem} activeClassName={style.active} to={GAME}>
@@ -23,8 +23,8 @@ function Topbar({ logOut }) {
   );
 }
 
-Topbar.propTypes = {
+TopbarDumb.propTypes = {
   logOut: PropTypes.func.isRequired
 };
 
-export default Topbar;
+export default TopbarDumb;

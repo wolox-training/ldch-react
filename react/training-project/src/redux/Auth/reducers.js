@@ -3,7 +3,16 @@ import { actions } from './actions';
 const initalState = {
   token: null,
   loginFail: false,
-  processing: false
+  processing: false,
+  userdata: {
+    name: null,
+    photoUrl: null,
+    charge: null,
+    description: null,
+    won: 0,
+    lost: 0,
+    draw: 0
+  }
 };
 
 function reducer(state = initalState, action) {
@@ -29,7 +38,12 @@ function reducer(state = initalState, action) {
     case actions.LOG_OUT_SUCCESS:
       return {
         ...state,
-        token: actions.payload
+        token: action.payload
+      };
+    case actions.SET_USER_DATA:
+      return {
+        ...state,
+        userdata: action.payload
       };
     default:
       return state;

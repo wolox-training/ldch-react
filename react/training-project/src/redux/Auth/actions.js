@@ -7,7 +7,8 @@ export const actions = {
   LOG_IN_PROCESSING: '@AUTH/LOG_IN_PROCESSING',
   LOG_OUT: '@@AUTH/LOG_OUT',
   LOG_OUT_SUCCESS: '@@AUTH/LOG_OUT_SUCCESS',
-  LOG_OUT_FAIL: '@@AUTH/LOG_OUT_FAIL'
+  LOG_OUT_FAIL: '@@AUTH/LOG_OUT_FAIL',
+  SET_USER_DATA: '@@AUTH/SET_USER_DATA'
 };
 
 const privateActionsCreators = {
@@ -38,6 +39,11 @@ const privateActionsCreators = {
     payload: null
   }),
 
+  setUserData: payload => ({
+    type: actions.SET_USER_DATA,
+    payload
+  }),
+
   logOutFail: () => ({
     type: actions.LOG_OUT_FAIL
   })
@@ -48,12 +54,14 @@ const actionCreators = {
     dispatch(privateActionsCreators.logInProcessing(true));
     const response = await AuthService.logIn({ username, password });
 
+    if (!response.data) return dispatch(privateActionsCreators.logInFail(true, false));
     if (response.ok && response.data.length > 0) {
       const token = window.btoa(username + password);
       const tokenPosted = await AuthService.postToken(token);
 
       if (!tokenPosted.ok) return dispatch(privateActionsCreators.logInFail(true, false));
       dispatch(privateActionsCreators.logInSuccess(token, false, false));
+      dispatch(privateActionsCreators.setUserData({ ...response.data[0].data }));
     } else {
       dispatch(privateActionsCreators.logInFail(true, false));
     }

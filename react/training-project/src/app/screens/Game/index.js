@@ -7,9 +7,9 @@ import Button from '~components/Button';
 import actionCreators from '~redux/History/actions';
 import { calculateWinner } from '~utils/gameUtils';
 
-import GameDumb from './layout';
+import Game from './layout';
 
-class Game extends Component {
+class GameContainer extends Component {
   render() {
     const history = this.props.history.slice();
     const current = history[this.props.stepNumber];
@@ -26,11 +26,11 @@ class Game extends Component {
       );
     });
 
-    return <GameDumb current={current} winner={winner} xIsNext={this.props.xIsNext} moves={moves} />;
+    return <Game current={current} winner={winner} xIsNext={this.props.xIsNext} moves={moves} />;
   }
 }
 
-Game.propTypes = {
+GameContainer.propTypes = {
   history: PropTypes.arrayOf(PropTypes.object).isRequired,
   stepNumber: PropTypes.number.isRequired,
   jumpTo: PropTypes.func.isRequired,
@@ -45,10 +45,11 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   jumpTo: step => dispatch(actionCreators.setJumTo(step)),
-  handleClick: newState => dispatch(actionCreators.handleClick(newState))
+  handleClick: newState => dispatch(actionCreators.handleClick(newState)),
+  logOut: token => dispatch(actionCreators.logOut(token))
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Game);
+)(GameContainer);
